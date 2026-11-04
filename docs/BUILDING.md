@@ -77,9 +77,11 @@ Things to check on each build:
 
 ## Troubleshooting
 
-- **"E: Unable to locate package X"**: a package name in
-  `config/package-lists/` doesn't exist in this Debian release. Search for the
-  correct name at <https://packages.debian.org>.
+- **"Unknown in Debian ..." / "E: Unable to locate package X"**: a package
+  name in `config/package-lists/` doesn't exist in this Debian release. Search
+  for the correct name at <https://packages.debian.org>. The build checks every
+  name before it starts (`scripts/check-packages.sh`), and CI runs the same
+  check on every push, so you see all bad names at once.
 - **Build fails in a hook**: hooks run with `set -e`, so check
   `build/build.log` for the last `Executing hook` line.
 - **Out of disk space**: run `sudo ./build.sh clean` and make sure you have

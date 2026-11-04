@@ -95,6 +95,8 @@ prepare() {
 }
 
 build() {
+    log "Checking package names"
+    "$ROOT/scripts/check-packages.sh" || die "Fix the package names listed above, then rebuild."
     prepare
     cd "$BUILD_DIR"
     log "Running live-build (this takes a while: 20-60 minutes, ~10 GB disk)"
