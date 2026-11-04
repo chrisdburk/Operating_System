@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=@OS_NAME@ Welcome
+GenericName=Getting started
+Comment=First steps, app install, updates and help for people coming from Windows
+Exec=/usr/local/bin/@OS_ID@-welcome
+Icon=system-help
+Categories=System;Settings;

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Update everything in one go: system packages (apt) and apps (Flatpak).
+# Tinkerers: this is just a convenience wrapper — feel free to read and edit it.
+set -euo pipefail
+
+echo "==> Updating system packages"
+sudo apt-get update
+sudo apt-get full-upgrade
+sudo apt-get autoremove --purge
+
+if command -v flatpak >/dev/null; then
+    echo
+    echo "==> Updating Flatpak apps"
+    flatpak update
+fi
+
+if command -v fwupdmgr >/dev/null; then
+    echo
+    echo "==> Checking for firmware updates (BIOS/UEFI, devices)"
+    fwupdmgr refresh >/dev/null 2>&1 || true
+    fwupdmgr get-updates || true
+fi
+
+echo
+read -rp "All done. Press Enter to close this window."

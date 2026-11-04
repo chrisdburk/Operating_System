@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Update Everything
+Comment=Update the system and all apps
+Exec=konsole -e /usr/local/bin/@OS_ID@-update
+Icon=system-software-update
+Categories=System;

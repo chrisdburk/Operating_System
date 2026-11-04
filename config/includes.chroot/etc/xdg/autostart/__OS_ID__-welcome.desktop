@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=@OS_NAME@ Welcome
+Exec=/usr/local/bin/@OS_ID@-welcome --autostart
+Icon=system-help
+OnlyShowIn=KDE;
+X-KDE-autostart-after=panel

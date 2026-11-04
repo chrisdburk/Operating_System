@@ -1,0 +1,39 @@
+# Graphical installer (Calamares) with Debian's ready-made configuration.
+calamares
+calamares-settings-debian
+
+# Networking, sound, Bluetooth, printing
+network-manager
+pipewire-audio
+bluez
+cups
+
+# Security & updates
+ufw
+unattended-upgrades
+fwupd
+intel-microcode
+amd64-microcode
+
+# Hardware support (firmware for Wi-Fi, graphics, etc.)
+firmware-linux
+firmware-linux-nonfree
+firmware-misc-nonfree
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-amd-graphics
+
+# Reading Windows disks and USB sticks
+ntfs-3g
+exfatprogs
+dosfstools
+
+# Basics every tinkerer expects
+sudo
+curl
+wget
+git
+nano
+htop
+bash-completion

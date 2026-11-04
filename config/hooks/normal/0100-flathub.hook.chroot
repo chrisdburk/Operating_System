@@ -1,0 +1,5 @@
+#!/bin/sh
+# Add Flathub so thousands of apps (Spotify, Discord, Steam, OBS, GIMP...)
+# show up in the Discover software center.
+set -e
+flatpak remote-add --system --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
