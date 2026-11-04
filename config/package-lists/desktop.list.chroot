@@ -1,0 +1,29 @@
+# KDE Plasma desktop — chosen because its default layout (taskbar at the
+# bottom, start menu, system tray, window buttons on the right) feels familiar
+# to Windows users, while every part of it can be customised.
+kde-plasma-desktop
+sddm
+sddm-theme-breeze
+plasma-nm
+plasma-pa
+plasma-discover
+plasma-discover-backend-flatpak
+plasma-firewall
+plasma-welcome
+kde-config-sddm
+kde-config-gtk-style
+breeze-gtk-theme
+kdialog
+
+# Core KDE applications (the "Windows equivalents")
+dolphin
+konsole
+kate
+ark
+okular
+gwenview
+kcalc
+spectacle
+partitionmanager
+print-manager
+kwalletmanager

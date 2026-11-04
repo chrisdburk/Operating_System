@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# =============================================================================
+#  @OS_NAME@ Welcome — a small "getting started" menu shown on first login.
+#
+#  It is deliberately a plain shell script using kdialog, so anyone can open
+#  it in a text editor, see exactly what each button does, and change it.
+# =============================================================================
+set -u
+
+ID="@OS_ID@"
+NAME="@OS_NAME@"
+HOMEPAGE="@OS_HOMEPAGE@"
+STATE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/$ID"
+DONE_FLAG="$STATE_DIR/welcome-done"
+GUIDE="/usr/share/doc/$ID/SWITCHING-FROM-WINDOWS.md"
+
+# When started automatically at login, only show until the user opts out.
+if [[ ${1:-} == --autostart && -e $DONE_FLAG ]]; then
+    exit 0
+fi
+
+is_live_session() { [[ -d /run/live/medium ]]; }
+
+run_in_terminal() { konsole --hold -e bash -c "$1" & }
+
+launch_installer() {
+    if command -v install-debian >/dev/null; then
+        install-debian &
+    else
+        pkexec calamares &
+    fi
+}
+
+while true; do
+    items=()
+    if is_live_session; then
+        items+=(install "Install $NAME on this computer")
+    fi
+    items+=(
+        guide    "Coming from Windows? Read the quick guide"
+        apps     "Find and install apps (Discover)"
+        update   "Update everything (system + apps)"
+        settings "Open System Settings"
+        msfonts  "Install Microsoft core fonts (Arial, Times New Roman...)"
+        drivers  "Check for firmware updates"
+        web      "Visit the project website"
+        noshow   "Don't show this window at startup"
+    )
+
+    choice=$(kdialog --title "Welcome to $NAME" \
+        --geometry 560x420 \
+        --menu "Welcome! What would you like to do?" "${items[@]}") || break
+
+    case $choice in
+        install)  launch_installer ;;
+        guide)    kdialog --title "Coming from Windows" --geometry 760x600 --textbox "$GUIDE" ;;
+        apps)     plasma-discover & ;;
+        update)   konsole -e "/usr/local/bin/$ID-update" & ;;
+        settings) systemsettings & ;;
+        msfonts)  run_in_terminal "sudo apt-get install ttf-mscorefonts-installer" ;;
+        drivers)  run_in_terminal "fwupdmgr refresh; fwupdmgr get-updates" ;;
+        web)      xdg-open "$HOMEPAGE" & ;;
+        noshow)
+            mkdir -p "$STATE_DIR" && touch "$DONE_FLAG"
+            kdialog --msgbox "OK. You can always reopen this from the app menu: \"$NAME Welcome\"."
+            ;;
+    esac
+done

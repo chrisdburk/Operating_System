@@ -1,0 +1,7 @@
+#!/bin/sh
+# Make our helper tools executable and refresh desktop menus.
+set -e
+chmod 0755 /usr/local/bin/@OS_ID@-*
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database -q /usr/share/applications || true
+fi

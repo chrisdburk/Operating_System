@@ -1,0 +1,20 @@
+# Everyday applications available out of the box.
+firefox-esr
+libreoffice
+vlc
+flatpak
+
+# Multimedia codecs so music and videos "just work"
+gstreamer1.0-plugins-good
+gstreamer1.0-plugins-bad
+gstreamer1.0-plugins-ugly
+gstreamer1.0-libav
+ffmpeg
+
+# Fonts — Liberation and Carlito/Caladea are metric-compatible with
+# Arial/Times/Courier and Calibri/Cambria, so Office documents keep their layout.
+fonts-noto
+fonts-noto-color-emoji
+fonts-liberation2
+fonts-crosextra-carlito
+fonts-crosextra-caladea
