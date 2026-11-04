@@ -1,5 +1,5 @@
 # Convenience shortcuts. Run `make help` for the list.
-.PHONY: help iso docker-iso config clean lint
+.PHONY: help iso docker-iso config clean lint check-packages
 
 help:
 	@echo "make iso         Build the ISO on a Debian host (needs root + live-build)"
@@ -7,6 +7,7 @@ help:
 	@echo "make config      Only prepare build/ so you can inspect the result"
 	@echo "make clean       Remove build/"
 	@echo "make lint        Run shellcheck on all scripts"
+	@echo "make check-packages  Check package names exist (needs a Debian host)"
 
 iso:
 	sudo ./build.sh build
@@ -21,4 +22,7 @@ clean:
 	sudo ./build.sh clean
 
 lint:
-	shellcheck -x build.sh build-in-docker.sh config/hooks/normal/*.hook.chroot config/includes.chroot/usr/local/bin/*
+	shellcheck -x build.sh build-in-docker.sh scripts/*.sh config/hooks/normal/*.hook.chroot config/includes.chroot/usr/local/bin/*
+
+check-packages:
+	./scripts/check-packages.sh

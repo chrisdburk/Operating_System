@@ -11,3 +11,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run shellcheck
         run: make lint
+
+  packages:
+    # Catches misspelled or missing package names in about a minute,
+    # instead of waiting for a full ISO build to fail.
+    runs-on: ubuntu-latest
+    container: debian:trixie
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check package names exist in Debian
+        run: ./scripts/check-packages.sh
