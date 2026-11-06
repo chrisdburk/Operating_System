@@ -60,6 +60,11 @@ qemu-system-x86_64 -enable-kvm -m 4096 -smp 2 \
 Or use VirtualBox / GNOME Boxes / virt-manager. Enable **EFI** in the VM
 settings to test the UEFI path, which is what most modern PCs use.
 
+VirtualBox's default **VMSVGA** graphics adapter imitates VMware's, so Linux
+logs `vmwgfx ... unsupported hypervisor` errors at boot. They're harmless and
+hidden by default (`loglevel=3`). You can still see them with
+`journalctl -k -p err`. A `RETBleed` warning is also normal in a VM.
+
 Things to check on each build:
 
 1. Boots to the desktop and logs in automatically as `live` (password: `live`).
