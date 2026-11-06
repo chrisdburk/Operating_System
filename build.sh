@@ -82,7 +82,7 @@ prepare() {
         --iso-application "$OS_NAME" \
         --iso-publisher "$OS_NAME project; $OS_HOMEPAGE" \
         --iso-volume "${OS_NAME} ${OS_VERSION}" \
-        --bootappend-live "boot=live components quiet username=live hostname=${OS_ID} locales=en_US.UTF-8 keyboard-layouts=us"
+        --bootappend-live "boot=live components quiet loglevel=3 username=live hostname=${OS_ID} locales=en_US.UTF-8 keyboard-layouts=us"
 
     # Overlay our own package lists, hooks and files on top.
     cp -a "$ROOT/config/." config/
